@@ -63,19 +63,16 @@ def test(args, model, device, test_loader, epoch, test_acc, test_ls):
     model.eval()
     test_loss = 0
     correct = 0
-    totalspike = 0
     with torch.no_grad():
         for data, target in test_loader:
             data, target = data.to(device), target.to(device)
             output = model(data)
-            totalspike += (output>Vth).float().sum().item()
             test_loss += nn.MSELoss(reduction='sum')(output, target).item()
             pred = output.argmax(dim=1, keepdim=True)
             target_label = target.argmax(dim=1, keepdim=True)
             correct += pred.eq(target_label.view_as(pred)).sum().item()
 
     test_loss /= len(test_loader.dataset)
-    print('average spike number', totalspike / len(test_loader.dataset))
     acc = 100. * correct / len(test_loader.dataset)
     test_acc.append(acc)
     test_ls.append(test_loss)

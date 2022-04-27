@@ -63,7 +63,6 @@ def test(args, model, device, test_loader, epoch, test_acc, test_ls):
     model.eval()
     test_loss = 0
     correct = 0
-    totalspike = 0
     batch_idx = 0
     with torch.no_grad():
         for data, target in test_loader:
@@ -72,13 +71,11 @@ def test(args, model, device, test_loader, epoch, test_acc, test_ls):
             data = data.permute(1, 2, 3, 4, 0)
             output = model(data, batch_idx, epoch)
             batch_idx += 1
-            totalspike += (output>Vth).float().sum().item()
             test_loss += F.cross_entropy(output, target, reduction='sum').item()
             pred = output.argmax(dim=1, keepdim=True)
             correct += pred.eq(target.view_as(pred)).sum().item()
 
     test_loss /= len(test_loader.dataset)
-    print('average spike number', totalspike / len(test_loader.dataset))
     acc = 100. * correct / len(test_loader.dataset)
     test_acc.append(acc)
     test_ls.append(test_loss)

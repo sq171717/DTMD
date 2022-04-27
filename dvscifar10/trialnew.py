@@ -60,18 +60,15 @@ def test(args, model, device, test_loader, epoch, test_acc, test_ls):
     model.eval()
     test_loss = 0
     correct = 0
-    totalspike = 0
     with torch.no_grad():
         for data, target in test_loader:
             data, target = data.to(device).float(), target.to(device).long()
             output = model(data)
-            totalspike += (output>Vth).float().sum().item()
             test_loss += F.cross_entropy(output, target, reduction='sum').item()
             pred = output.argmax(dim=1, keepdim=True)
             correct += pred.eq(target.view_as(pred)).sum().item()
 
     test_loss /= len(test_loader.dataset)
-    print('average spike number', totalspike / len(test_loader.dataset))
     acc = 100. * correct / len(test_loader.dataset)
     test_acc.append(acc)
     test_ls.append(test_loss)
@@ -139,9 +136,9 @@ def main():
 
     dvscifar10_path = '/dvs-cifar10_mat'
     train_dataset = DVSCifar10(dvscifar10_path, train=True, transform=transforms.ToTensor(), target_transform=None,
-                            steps=steps, count=1, per=Vth)
+                            steps=steps, count=1, per=kappa)
     test_dataset = DVSCifar10(dvscifar10_path, train=False, transform=transforms.ToTensor(), steps=steps, count=1,
-                          per=Vth)
+                          per=kappa)
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
         batch_size=args.batch_size, shuffle=True, **kwargs)
