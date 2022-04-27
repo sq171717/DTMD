@@ -10,7 +10,7 @@ This is the PyTorch implementation of paper: DTMD: Learning Improvement of Spiki
 ## Dataset Preparation
 As for MNIST and CIFAR10, the data can be downloaded by torchvision as in the code. The DVS-CIFAR10 is avaliable at [here](https://figshare.com/articles/dataset/CIFAR10-DVS_New/4724671/2). The N-MNIST dataset is avaliable at [here](https://www.garrickorchard.com/datasets/n-mnist).
 
-Preprocessing of splitting images of N-MNIST and DVS-CIFAR10 are provided as [processing_data.py](https://github.com/sq171717/DTMT/blob/main/nmnist/processing_data.py) and ([processing_data.py](https://github.com/sq171717/DTMT/blob/main/dvscifar10/processing_data.py), [dataset.py](https://github.com/sq171717/DTMT/blob/main/dvscifar10/dataset.py)) in the corresponding folders.
+Preprocessing of splitting images of N-MNIST and DVS-CIFAR10 are provided as [dataset.py](https://github.com/sq171717/DTMT/blob/main/nmnist/dataset.py) and [processing_data.py](https://github.com/sq171717/DTMT/blob/main/dvscifar10/processing_data.py) in the corresponding folders.
 
 ## Training and Testing
 In the corresponding directory, run following command with GPU IDs identification:
