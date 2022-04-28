@@ -32,7 +32,7 @@ class NMNIST(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        x = self.eventflow[idx, ...].astype(np.float32)     # 某些情况下可能对数据格式有要求（MSELoss）
+        x = self.eventflow[idx, ...].astype(np.float32)
         y = self.label[idx].astype(np.float32)                
         return (x, y)
 
@@ -50,7 +50,7 @@ class NMNIST(Dataset):
 
                 all_y = raw_data[1::5]
                 all_x = raw_data[0::5]
-                all_p = (raw_data[2::5] & 128) >> 7 #bit 7
+                all_p = (raw_data[2::5] & 128) >> 7
                 all_ts = ((raw_data[2::5] & 127) << 16) | (raw_data[3::5] << 8) | (raw_data[4::5])
                 all_ts = np.uint32(np.around(all_ts / 1000))
 
