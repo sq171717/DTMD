@@ -23,6 +23,12 @@ You can also find our trained models in tmp folder.
 
 All the hyperparameters are initialized same as the values mentioned in the paper.
 
+## Load and Test the Existing Model
+In the corresponding directory, run following command with GPU IDs identification:
+
+	CUDA_VISIBLE_DEVICE=0,1,2,3 python test.py
+
+Model with the highest accuracy will be loaded and run testing process.
 
 ## Results
 The results of our DTMD method on MNIST, N-MNIST, CIFAR10 and DVS-CIFAR10 are:
