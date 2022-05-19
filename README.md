@@ -1,6 +1,8 @@
 # DTMD
 This is the PyTorch implementation of paper: DTMD: Learning Improvement of Spiking Neural Networks with Dynamic Thresholding Neurons and Moderate Dropout  **(submitted to NeurIPS 2022)**.
 
+Here we provide code for CIFAR10 dataset as a sample, trained model is also provided. More datasets will be added later.
+
 ## Dependencies and Installation
 - Python 3.8.8 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux))
 - PyThorch 1.9.0
