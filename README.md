@@ -23,6 +23,12 @@ You can also find our trained models in tmp folder.
 
 All the hyperparameters are initialized same as the values mentioned in the paper.
 
+## Load and Test the Existing Model
+In the corresponding directory, run following command with GPU IDs identification:
+
+	CUDA_VISIBLE_DEVICE=0,1,2,3 python test.py
+
+Model with the highest accuracy will be loaded and run testing process.
 
 ## Results
 The results of our DTMD method on MNIST, N-MNIST, CIFAR10 and DVS-CIFAR10 are:
@@ -30,9 +36,9 @@ The results of our DTMD method on MNIST, N-MNIST, CIFAR10 and DVS-CIFAR10 are:
 |    Model    | Time steps |  Best  |  Mean   |   Std   |
 |:-----------:|:----------:|:------:|:-------:|:-------:|
 |    MNIST    |     4      | 99.60% | 99.584% | 0.012%  |
-|   CIFAR10   |     4      | 94.19% | 94.14%  | 0.0455% |
-|   N-MNIST   |     15     | 99.65% | 99.62%  | 0.0245% |
-| DVS-CIFAR10 |     7      | 73.30% | 73.167% | 0.125%  |
+|   CIFAR10   |     4      | 94.19% | 94.138%  | 0.0387% |
+|   N-MNIST   |     15     | 99.65% | 99.614%  | 0.0206% |
+| DVS-CIFAR10 |     7      | 73.30% | 72.92% | 0.319%  |
 
 
 Results of ablation study on the effect of our proposed methods are:
